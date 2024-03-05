@@ -8,15 +8,16 @@ type Person = {
 
 
 
-function getStatistics(): number {
+function getStatistics(): {meanAge: number, meanHeight: number} {
   const persons: Person[] = JSON.parse(readFileSync("./persons.json").toString());
-  let oldestAge: number = 0
+  let meanAge:number = 0
+  let meanHeight:number = 0
   persons.map(person => {
-     if (person.age > oldestAge){
-       oldestAge = person.age
-     }
+    meanAge += person.age
+    meanHeight += person.height
   })
-  return oldestAge
+
+  return {meanAge: (meanAge/persons.length), meanHeight: (meanHeight/persons.length)}
 }
 
 function displayResult() {
