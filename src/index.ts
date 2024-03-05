@@ -13,8 +13,19 @@ function getStatistics(): {meanAge: number, meanHeight: number} {
   let meanAge:number = 0
   let meanHeight:number = 0
   persons.map(person => {
-    meanAge += person.age
-    meanHeight += person.height
+    if(!person.age || typeof person.age !== "number"){
+     console.error("L'age donné n'est pas au bon format")
+     return({meanAge: 0, meanHeight: 0})
+     } else {
+      meanAge += person.age
+    }
+     if(!person.height || typeof person.height !== "number"){
+       console.error("La taille donnée n'est pas au bon format")
+       return({meanAge: 0, meanHeight: 0})
+     } else {
+       meanHeight += person.height
+     }
+
   })
 
   return {meanAge: (meanAge/persons.length), meanHeight: (meanHeight/persons.length)}
