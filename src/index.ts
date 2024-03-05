@@ -3,7 +3,7 @@ import { readFileSync } from "fs";
 
 type Person = {
   age: number;
-  height: number;
+  [key: string]: number;
 };
 
 
